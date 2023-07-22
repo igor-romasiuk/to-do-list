@@ -57,6 +57,7 @@ function deleteCheck(e) {
     if (item.classList[0] === 'complete-btn') {
         const todo = item.parentElement;
         todo.classList.toggle('completed');
+        updateLocalTodoStatus(todo);
     }
 }
 
@@ -139,5 +140,24 @@ function removeLocalTodos(todo) {
     }
     const todoIndex = todo.children[0].innerText;
     todos.splice(todos.indexOf(todoIndex), 1);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function updateLocalTodoStatus(todo) {
+    let todos;
+    if (localStorage.getItem('todos') === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+
+    const todoText = todo.querySelector('.todo-item').innerText;
+
+    todos.forEach((task) => {
+        if (task === todoText) {
+            task.completed = todo.classList.contains('completed');
+        }
+    });
+
     localStorage.setItem('todos', JSON.stringify(todos));
 }
