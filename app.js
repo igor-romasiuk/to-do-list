@@ -14,6 +14,10 @@ filterOption.addEventListener('click', filterTodo);
 function addTodo(event) {
     // Prevent form from submitting
     event.preventDefault();
+    // Check if the input value is not empty
+    if (todoInput.value.trim() === "") {
+        return; // Exit the function if the input value is empty or contains only spaces
+    }
     // Todo DIV
     const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');
