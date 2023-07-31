@@ -18,24 +18,44 @@
     <title>Todo List</title>
 </head>
 <body>
-    <header>
-        <h1>Ed's Todo List</h1>
-    </header>
-    <form>
-        <input type="text" class="todo-input">
-        <button class="todo-button" type="submit">
-            <i class="fas fa-plus-square"></i>
-        </button>
-        <div class="select">
-            <select name="todos" class="filter-todo">
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="uncompleted">Uncompleted</option>
-            </select>
+    <header class="header">
+        <div class="header-logo">
+            <span class="header-todo-span">To Do</span>
         </div>
-    </form>
-    <div class="todo-container">
-        <ul class="todo-list"></ul>
+        <div class="todo-search-box">
+            <button class="search-button">Icon</button>
+        </div>
+        <div class="div-icon-profile">
+            <img src="" alt="#">
+        </div>
+    </header>
+    <div class="main">
+        <div class="toolbar">
+            <div class="toolbar-top">
+                <div class="tollbar-left">
+                    <div class="sidebar-btn">
+                        <svg class="fluentIcon" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2 4.5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm0 5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm.5 4.5a.5.5 0 000 1h15a.5.5 0 000-1h-15z" fill="currentColor">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="title-item">
+                        <span class="title">My Day</span>
+                    </div>
+                </div>
+                <div class="toolbar-right">
+                    <div class="button-sort">
+                        <svg class="fluentIcon" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2.35 7.35L5 4.71V16.5a.5.5 0 001 0V4.7l2.65 2.65a.5.5 0 00.7-.7l-3.49-3.5A.5.5 0 005.5 3a.5.5 0 00-.39.18L1.65 6.65a.5.5 0 10.7.7zm15.3 5.3L15 15.29V3.5a.5.5 0 00-1 0v11.8l-2.65-2.65a.5.5 0 00-.7.7l3.49 3.5a.5.5 0 00.36.15.5.5 0 00.39-.18l3.46-3.47a.5.5 0 10-.7-.7z" fill="currentColor">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="subline"></div>
+        </div>
     </div>
     
     <script src="./app.js"></script>
