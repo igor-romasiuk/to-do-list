@@ -25,3 +25,55 @@
     border: none;
     cursor: pointer;
 }
+
+.main {
+    height: 100vh;
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #f3f2f1;
+}
+
+.toolbar-top {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 0 20px;
+}
+.tollbar-left {
+    display: flex;
+    align-items: center;
+}
+.title-item {
+    font-size: 20px;
+    padding: 6px 8px;
+}
+.toolbar-right {
+    display: flex;
+    align-items: center;
+}
+.sort-btn {
+    padding: 2px 12px;
+    margin: 0 0 0 3px;
+    background: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: #797775;
+}
+.group-btn {
+    padding: 2px 12px;
+    margin: 0 0 0 3px;
+    background: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: #797775;
+}
+.subline {
+    padding: 0 25px;
+}
+.today-date {
+    color: #797775;
+    font-size: 12px;
+}
