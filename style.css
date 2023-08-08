@@ -58,6 +58,12 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+.menu-btn {
+    border: none;
+    background: none;
 }
 .sidebar-content {
     display: flex;
@@ -70,6 +76,89 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
+}
+.lists-ul {
+    list-style: none;
+}
+.todaybar-li,
+.important-li,
+.planed-li,
+.tasks-li {
+    min-width: 50px;
+    position: relative;
+}
+.todaybar-li::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #2564cf;
+    height: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: expand 0.25s forwards;
+}
+.todaybar-inner,
+.important-inner,
+.planed-inner,
+.tasks-inner  {
+    cursor: pointer;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+.todaybar-icon,
+.important-icon,
+.planed-icon,
+.tasks-icon {
+    width: 20px;
+    height: 20px;
+}
+.todaybar-title,
+.important-title,
+.planed-title,
+.tasks-title  {
+    margin-left: 16px;
+    font-weight: 500;
+}
+.sidebar-line {
+    margin: 9px 16px;
+    height: 1px;
+    background-color: #edebe9;
+}
+.sidebar-addList {
+    flex-shrink: 0;
+    z-index: 1;
+    display: flex;
+}
+.add-list {
+    padding: 12px 0 12px 24px;
+    color: #2564cf;
+    font-size: 1.4rem;
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.add-list-btn {
+    border: none;
+    background: none;
+}
+.add-list-input {
+    padding-left: 16px;
+    border: none;
+}
+.add-group {
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.add-group-btn {
+    padding: 0 24px;
 }
 
 .toolbar-top {
