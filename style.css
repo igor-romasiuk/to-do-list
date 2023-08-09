@@ -27,11 +27,12 @@
 }
 
 .main {
-    height: 100vh;
-    flex: 1 1 0px;
     display: flex;
+    flex: 1 1 0px;
+    will-change: width;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
     background-color: #f3f2f1;
 }
 
@@ -60,6 +61,8 @@
     flex-shrink: 0;
     justify-content: space-between;
     padding: 0 24px;
+    height: 48px;
+    margin-top: 16px;
 }
 .menu-btn {
     border: none;
@@ -87,7 +90,7 @@
     min-width: 50px;
     position: relative;
 }
-.todaybar-li::before {
+.todaybar-li ::before {
     content: '';
     position: absolute;
     width: 2px;
@@ -107,6 +110,18 @@
     user-select: none;
     display: flex;
     align-items: center;
+}
+.todaybar-inner:hover {
+    background-color: #f3f3f2;
+}
+.important-inner:hover {
+    background-color: #f3f3f2;
+}
+.planed-inner:hover {
+    background-color: #f3f3f2;
+}
+.tasks-inner:hover {
+    background-color: #f3f3f2;
 }
 .todaybar-icon,
 .important-icon,
@@ -145,20 +160,31 @@
 .add-list-btn {
     border: none;
     background: none;
+    align-items: center;
+    cursor: pointer;
 }
 .add-list-input {
     padding-left: 16px;
-    border: none;
-}
-.add-group {
+    width: 100%;
     border: none;
     background: none;
+    box-shadow: none;
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 20px;
+    transition: none;
+    color: #323130;
+}
+.add-group {
     display: flex;
     align-items: center;
     position: relative;
 }
 .add-group-btn {
     padding: 0 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .toolbar-top {
