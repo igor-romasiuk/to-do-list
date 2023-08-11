@@ -1,167 +1,197 @@
-// Selectors
-const todoInput = document.querySelector('.todo-input');
-const todoButton = document.querySelector('.todo-button');
-const todoList = document.querySelector('.todo-list');
-const filterOption = document.querySelector('.filter-todo');
+// SIDEBAR DROPDOWN
+const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
+const sidebar = document.getElementById('sidebar');
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', getTodos);
-todoButton.addEventListener('click', addTodo);
-todoList.addEventListener('click', deleteCheck);
-filterOption.addEventListener('click', filterTodo);
+allDropdown.forEach(item=> {
+	const a = item.parentElement.querySelector('a:first-child');
+	a.addEventListener('click', function (e) {
+		e.preventDefault();
 
-// Functions
-function addTodo(event) {
-    // Prevent form from submitting
-    event.preventDefault();
-    // Check if the input value is not empty
-    if (todoInput.value.trim() === "") {
-        return; // Exit the function if the input value is empty or contains only spaces
-    }
-    // Todo DIV
-    const todoDiv = document.createElement('div');
-    todoDiv.classList.add('todo');
-    // Create LI
-    const newTodo = document.createElement('li');
-    newTodo.innerText = todoInput.value;
-    newTodo.classList.add('todo-item');
-    todoDiv.appendChild(newTodo);
-    // Add Todo To LocalStorage
-    saveLocalTodos(todoInput.value);
-    // Check Mark Button
-    const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<i class="fas fa-check"></i>';
-    completedButton.classList.add('complete-btn');
-    todoDiv.appendChild(completedButton);
-    // Check Trash Button
-    const trashButton = document.createElement('button');
-    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-    trashButton.classList.add('trash-btn');
-    todoDiv.appendChild(trashButton);
-    // Append To List
-    todoList.appendChild(todoDiv);
-    // Clear Todo Input Value
-    todoInput.value = "";
+		if(!this.classList.contains('active')) {
+			allDropdown.forEach(i=> {
+				const aLink = i.parentElement.querySelector('a:first-child');
+
+				aLink.classList.remove('active');
+				i.classList.remove('show');
+			})
+		}
+
+		this.classList.toggle('active');
+		item.classList.toggle('show');
+	})
+})
+
+
+
+
+
+// SIDEBAR COLLAPSE
+const toggleSidebar = document.querySelector('nav .toggle-sidebar');
+const allSideDivider = document.querySelectorAll('#sidebar .divider');
+
+if(sidebar.classList.contains('hide')) {
+	allSideDivider.forEach(item=> {
+		item.textContent = '-'
+	})
+	allDropdown.forEach(item=> {
+		const a = item.parentElement.querySelector('a:first-child');
+		a.classList.remove('active');
+		item.classList.remove('show');
+	})
+} else {
+	allSideDivider.forEach(item=> {
+		item.textContent = item.dataset.text;
+	})
 }
 
-function deleteCheck(e) {
-    const item = e.target;
-    // Delete Todo
-    if (item.classList[0] === 'trash-btn') {
-        const todo = item.parentElement;
-        // Animation
-        todo.classList.add('fall');
-        removeLocalTodos(todo);
-        todo.addEventListener('transitionend', function() {
-            todo.remove();
-        })
-    }
+toggleSidebar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
 
-    // Check Mark
-    if (item.classList[0] === 'complete-btn') {
-        const todo = item.parentElement;
-        todo.classList.toggle('completed');
-        updateLocalTodoStatus(todo);
-    }
-}
+	if(sidebar.classList.contains('hide')) {
+		allSideDivider.forEach(item=> {
+			item.textContent = '-'
+		})
 
-function filterTodo(e) {
-    const todos = todoList.childNodes;
-    todos.forEach(function(todo) {
-        switch(e.target.value) {
-            case "all":
-                todo.style.display = 'flex';
-            break;
-            case "completed":
-                if (todo.classList.contains('completed')) {
-                    todo.style.display = 'flex';
-                } else {
-                    todo.style.display = 'none';
-                }
-            break;
-            case "uncompleted":
-                if (!todo.classList.contains('completed')) {
-                    todo.style.display = 'flex';
-                } else {
-                    todo.style.display = 'none';
-                }
-            break;
-        }
-    })
-}
+		allDropdown.forEach(item=> {
+			const a = item.parentElement.querySelector('a:first-child');
+			a.classList.remove('active');
+			item.classList.remove('show');
+		})
+	} else {
+		allSideDivider.forEach(item=> {
+			item.textContent = item.dataset.text;
+		})
+	}
+})
 
-function saveLocalTodos(todo) {
-    // Check
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-    todos.push(todo);
-    localStorage.setItem('todos', JSON.stringify(todos))
-}
 
-function getTodos() {
-    // Check
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-    todos.forEach (function(todo) {
-        // Todo DIV
-        const todoDiv = document.createElement('div');
-        todoDiv.classList.add('todo');
-        // Create LI
-        const newTodo = document.createElement('li');
-        newTodo.innerText = todo;
-        newTodo.classList.add('todo-item');
-        todoDiv.appendChild(newTodo);
-        // Check Mark Button
-        const completedButton = document.createElement('button');
-        completedButton.innerHTML = '<i class="fas fa-check"></i>';
-        completedButton.classList.add('complete-btn');
-        todoDiv.appendChild(completedButton);
-        // Check Trash Button
-        const trashButton = document.createElement('button');
-        trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-        trashButton.classList.add('trash-btn');
-        todoDiv.appendChild(trashButton);
-        // Append To List
-        todoList.appendChild(todoDiv);
-    })
-}
 
-function removeLocalTodos(todo) {
-    // Check
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-    const todoIndex = todo.children[0].innerText;
-    todos.splice(todos.indexOf(todoIndex), 1);
-    localStorage.setItem('todos', JSON.stringify(todos));
-}
 
-function updateLocalTodoStatus(todo) {
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
+sidebar.addEventListener('mouseleave', function () {
+	if(this.classList.contains('hide')) {
+		allDropdown.forEach(item=> {
+			const a = item.parentElement.querySelector('a:first-child');
+			a.classList.remove('active');
+			item.classList.remove('show');
+		})
+		allSideDivider.forEach(item=> {
+			item.textContent = '-'
+		})
+	}
+})
 
-    const todoText = todo.querySelector('.todo-item').innerText;
 
-    todos.forEach((task) => {
-        if (task === todoText) {
-            task.completed = todo.classList.contains('completed');
-        }
-    });
 
-    localStorage.setItem('todos', JSON.stringify(todos));
-}
+sidebar.addEventListener('mouseenter', function () {
+	if(this.classList.contains('hide')) {
+		allDropdown.forEach(item=> {
+			const a = item.parentElement.querySelector('a:first-child');
+			a.classList.remove('active');
+			item.classList.remove('show');
+		})
+		allSideDivider.forEach(item=> {
+			item.textContent = item.dataset.text;
+		})
+	}
+})
+
+
+
+
+// PROFILE DROPDOWN
+const profile = document.querySelector('nav .profile');
+const imgProfile = profile.querySelector('img');
+const dropdownProfile = profile.querySelector('.profile-link');
+
+imgProfile.addEventListener('click', function () {
+	dropdownProfile.classList.toggle('show');
+})
+
+
+
+
+// MENU
+const allMenu = document.querySelectorAll('main .content-data .head .menu');
+
+allMenu.forEach(item=> {
+	const icon = item.querySelector('.icon');
+	const menuLink = item.querySelector('.menu-link');
+
+	icon.addEventListener('click', function () {
+		menuLink.classList.toggle('show');
+	})
+})
+
+
+
+window.addEventListener('click', function (e) {
+	if(e.target !== imgProfile) {
+		if(e.target !== dropdownProfile) {
+			if(dropdownProfile.classList.contains('show')) {
+				dropdownProfile.classList.remove('show');
+			}
+		}
+	}
+
+	allMenu.forEach(item=> {
+		const icon = item.querySelector('.icon');
+		const menuLink = item.querySelector('.menu-link');
+
+		if(e.target !== icon) {
+			if(e.target !== menuLink) {
+				if (menuLink.classList.contains('show')) {
+					menuLink.classList.remove('show')
+				}
+			}
+		}
+	})
+})
+
+
+
+
+
+// PROGRESSBAR
+const allProgress = document.querySelectorAll('main .card .progress');
+
+allProgress.forEach(item=> {
+	item.style.setProperty('--value', item.dataset.value)
+})
+
+
+
+
+
+
+// APEXCHART
+var options = {
+  series: [{
+  name: 'series1',
+  data: [31, 40, 28, 51, 42, 109, 100]
+}, {
+  name: 'series2',
+  data: [11, 32, 45, 32, 34, 52, 41]
+}],
+  chart: {
+  height: 350,
+  type: 'area'
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'smooth'
+},
+xaxis: {
+  type: 'datetime',
+  categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+},
+tooltip: {
+  x: {
+    format: 'dd/MM/yy HH:mm'
+  },
+},
+};
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
