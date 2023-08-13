@@ -459,6 +459,20 @@ main {
     border: none;
     cursor: pointer;
 }
+.new-task {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 35px;
+	margin: 20px 20px 0 20px;
+	padding: 0 16px;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 
+        0px 0.3px 0.9px grey,
+        0px 1.6px 3.6px grey
+    ;
+}
 
 @media screen and (max-width: 768px) {
 	#content {
