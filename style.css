@@ -473,6 +473,21 @@ main {
         0px 1.6px 3.6px grey
     ;
 }
+.delete-btn {
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.delete-btn img {
+    width: 35px; 
+    height: 35px;
+}
+
+.new-input-task {
+
+}
 
 @media screen and (max-width: 768px) {
 	#content {
