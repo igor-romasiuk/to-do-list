@@ -20,7 +20,7 @@ function addTask() {
         listItem.innerHTML = `
             <span class="task-text">${taskText}</span>
             <input type="checkbox" class="new-input-task">
-            <button class="delete-btn">Delete</button>
+            <button class="delete-btn"><img src="./icons/delete-btn.png" alt="Delete"></button>
         `;
         taskList.appendChild(listItem);
         taskInput.value = '';
