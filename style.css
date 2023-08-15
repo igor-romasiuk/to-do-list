@@ -190,12 +190,12 @@ li {
 /* CONTENT */
 #content {
 	position: relative;
-	width: calc(100% - 260px);
+	max-width: calc(100% - 260px);
 	left: 260px;
 	transition: all .3s ease;
 }
 #sidebar.hide + #content {
-	width: calc(100% - 60px);
+	width: calc(100% - 260px);
 	left: 60px;
 }
 /* NAVBAR */
@@ -465,7 +465,7 @@ main {
 	justify-content: space-between;
 	min-height: 35px;
 	margin: 20px 20px 0 20px;
-	padding: 0 16px;
+	padding: 0 0 0 16px;
 	border: none;
 	border-radius: 4px;
 	box-shadow: 
@@ -473,21 +473,53 @@ main {
         0px 1.6px 3.6px grey
     ;
 }
+.container-btn {
+	display: flex;
+}
 .delete-btn {
 	background-color: transparent;
     border: none;
     cursor: pointer;
-    padding: 5px;
+	height: 35px;
 }
 
 .delete-btn img {
     width: 35px; 
-    height: 35px;
+    min-height: 35px;
 }
 
-.new-input-task {
-
+.custom-checkbox {
+	display: flex;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
 }
+
+.custom-checkbox input {
+	opacity: 0;
+	cursor: pointer;
+}
+
+.checkmark {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 31px;
+	width: 31px;
+	background-color: #fff;
+	border: 2px solid #2196F3; /* Blue color */
+	border-radius: 7px;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+	content: "\2713"; /* Unicode checkmark symbol */
+	font-size: 32px;
+	color: #2196F3;
+}
+.completed {
+    text-decoration: line-through;
+}
+
 
 @media screen and (max-width: 768px) {
 	#content {
