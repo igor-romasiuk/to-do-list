@@ -14,7 +14,6 @@ taskInput.addEventListener('keypress', (event) => {
     }
 });
 todayDateElement.addEventListener('DOMContentLoaded', currentDate());
-taskCompleted.addEventListener('click', completedTask());
 
 // Functions
 function addTask() {
@@ -26,7 +25,7 @@ function addTask() {
             <span class="task-text">${taskText}</span>
             <div class="container-btn">
                 <label class="custom-checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" class="complete-btn">
                     <span class="checkmark"></span>
                 </label>
                 <button class="delete-btn"><img src="./icons/delete-btn.png" alt="Delete"></button>
@@ -35,6 +34,7 @@ function addTask() {
         taskList.appendChild(listItem);
         taskInput.value = '';
         bindDeleteButton(listItem);
+        bindCompleteButton(listItem);
     }
 }
 
@@ -42,6 +42,14 @@ function bindDeleteButton(listItem) {
     const deleteButton = document.querySelector('.delete-btn');
     deleteButton.addEventListener('click', () => {
         listItem.remove()
+    });
+}
+
+function bindCompleteButton(listItem) {
+    const completeButton = listItem.querySelector('.complete-btn');
+    completeButton.addEventListener('click', () => {
+        listItem.classList.toggle('completed');
+        console.log(todo);
     });
 }
 
@@ -62,8 +70,4 @@ function currentDate() {
         todayDate.getDate() + ' '
 
     todayDateElement.innerHTML = formattedDate;
-}
-
-function completedTask() {
-    taskDescription.classList.toggle('completed');
 }
