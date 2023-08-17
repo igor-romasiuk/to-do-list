@@ -453,8 +453,19 @@ main {
 .recurring-btn {
     border: none;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 7px;
 }
+.select {
+    margin: 0.5rem;
+    position: relative;
+}
+.select {
+    color: #f7f5f5;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    width: 10rem;
+}
+
 .add-task-btn {
     border: none;
     cursor: pointer;
@@ -475,6 +486,7 @@ main {
 }
 .container-btn {
 	display: flex;
+	align-items: center;
 }
 .delete-btn {
 	background-color: transparent;
@@ -485,44 +497,24 @@ main {
 
 .delete-btn img {
     width: 35px; 
-    min-height: 35px;
+    height: 35px;
+}
+.complete-btn {
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+	height: 32px;
+}
+.complete-btn img {
+    width: 32px; 
+    height: 31px;
 }
 
-.custom-checkbox {
-	display: flex;
-	align-items: center;
-	position: relative;
-	cursor: pointer;
-}
-
-.custom-checkbox input {
-	opacity: 0;
-	cursor: pointer;
-}
-
-.checkmark {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 31px;
-	width: 31px;
-	background-color: #fff;
-	border: 2px solid #2196F3; /* Blue color */
-	border-radius: 7px;
-}
-
-.custom-checkbox input:checked + .checkmark:after {
-	content: "\2713"; /* Unicode checkmark symbol */
-	font-size: 32px;
-	color: #2196F3;
-}
 .completed {
 	text-decoration: line-through;
 	opacity: 0.5;
 }
-.completed:focus {
-	outline: none;
-}
+
 @media screen and (max-width: 768px) {
 	#content {
 		position: relative;
