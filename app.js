@@ -3,8 +3,8 @@ const addButton = document.querySelector('.add-task-btn');
 const taskInput = document.querySelector('.input-task');
 const taskList = document.querySelector('.task-list');
 const todayDateElement = document.querySelector('.today-date');
-const taskDescription = document.querySelector('.new-task');
-const taskCompleted = document.querySelector('.checkbox');
+const newTask = document.querySelector('.new-task')
+const filterOption = document.querySelector('.filter-todo')
 
 // Event listeners
 addButton.addEventListener('click', addTask);
@@ -13,7 +13,8 @@ taskInput.addEventListener('keypress', (event) => {
         addTask();
     }
 });
-todayDateElement.addEventListener('DOMContentLoaded', currentDate());
+todayDateElement.addEventListener('DOMContentLoaded', currentDate);
+filterOption.addEventListener("click", filterTodo);
 
 // Functions
 function addTask() {
@@ -24,10 +25,7 @@ function addTask() {
         listItem.innerHTML = `
             <span class="task-text">${taskText}</span>
             <div class="container-btn">
-                <label class="custom-checkbox">
-                    <input type="checkbox" class="complete-btn">
-                    <span class="checkmark"></span>
-                </label>
+                <button class="complete-btn"><img src="./icons/complete-btn.png" alt="Complete"></button>
                 <button class="delete-btn"><img src="./icons/delete-btn.png" alt="Delete"></button>
             </div>
         `;
@@ -49,7 +47,6 @@ function bindCompleteButton(listItem) {
     const completeButton = listItem.querySelector('.complete-btn');
     completeButton.addEventListener('click', () => {
         listItem.classList.toggle('completed');
-        console.log(todo);
     });
 }
 
@@ -70,4 +67,28 @@ function currentDate() {
         todayDate.getDate() + ' '
 
     todayDateElement.innerHTML = formattedDate;
+}
+
+function filterTodo() {
+    const todos = newTask.childNodes;
+    todos.forEach(function(todo) {
+        switch (e.target.value) {
+          case "all":
+            todo.style.display = "flex";
+            break;
+          case "completed":
+            if (todo.classList.contains("completed")) {
+              todo.style.display = "flex";
+            } else {
+              todo.style.display = "none";
+            }
+            break;
+          case "uncompleted":
+            if (!todo.classList.contains("completed")) {
+              todo.style.display = "flex";
+            } else {
+              todo.style.display = "none";
+            }
+        }
+    });
 }
