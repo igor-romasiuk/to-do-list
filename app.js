@@ -5,6 +5,7 @@ const taskList = document.querySelector('.task-list');
 const todayDateElement = document.querySelector('.today-date');
 const newTask = document.querySelector('.new-task')
 const filterOption = document.querySelector('.filter-todo')
+const todoList = document.querySelector('.todo-list')
 
 // Event listeners
 addButton.addEventListener('click', addTask);
@@ -20,26 +21,46 @@ filterOption.addEventListener("click", filterTodo);
 function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText !== '') {
+        //Create todo div
         const listItem = document.createElement('div');
         listItem.classList.add('new-task')
-        listItem.innerHTML = `
-            <span class="task-text">${taskText}</span>
-            <div class="container-btn">
-                <button class="complete-btn"><img src="./icons/complete-btn.png" alt="Complete"></button>
-                <button class="delete-btn"><img src="./icons/delete-btn.png" alt="Delete"></button>
-            </div>
-        `;
-        taskList.appendChild(listItem);
-        taskInput.value = '';
+        //Create list
+        const newTodo = document.createElement('li');
+        newTodo.innerText = taskInput.value;
+        newTodo.classList.add('todo-item')
+        listItem.appendChild(newTodo);
+        taskInput.value = "";
+        //Create Completed Button
+        const completedButton = document.createElement('button');
+        completedButton.innerHTML = `<img src="./icons/complete-btn.png" alt="Complete">`;
+        completedButton.classList.add('complete-btn')
+        listItem.appendChild(completedButton);
+        //Create trash button
+        const deleteButton = document.createElement('buuton');
+        deleteButton.innerHTML = `<img src="./icons/delete-btn.png" alt="Delete">`;
+        deleteButton.classList.add('delete-btn');
+        listItem.appendChild(deleteButton);
+        todoList.appendChild(listItem);
         bindDeleteButton(listItem);
         bindCompleteButton(listItem);
+        //listItem.innerHTML = `
+        //    <span class="task-text">${taskText}</span>
+        //    <div class="container-btn">
+        //        <button class="complete-btn"><img src="./icons/complete-btn.png" alt="Complete"></button>
+        //        <button class="delete-btn"><img src="./icons/delete-btn.png" alt="Delete"></button>
+        //    </div>
+        //`;
+        //taskList.appendChild(listItem);
+        //taskInput.value = '';
+        //bindDeleteButton(listItem);
+        //bindCompleteButton(listItem);
     }
 }
 
 function bindDeleteButton(listItem) {
     const deleteButton = document.querySelector('.delete-btn');
     deleteButton.addEventListener('click', () => {
-        listItem.remove()
+        listItem.remove();
     });
 }
 
