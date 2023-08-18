@@ -473,7 +473,6 @@ main {
 .new-task {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	min-height: 35px;
 	margin: 20px 20px 0 20px;
 	padding: 0 0 0 16px;
@@ -493,6 +492,7 @@ main {
     border: none;
     cursor: pointer;
 	height: 35px;
+	right: 0;
 }
 
 .delete-btn img {
@@ -504,6 +504,7 @@ main {
     border: none;
     cursor: pointer;
 	height: 32px;
+	margin-left: auto;
 }
 .complete-btn img {
     width: 32px; 
