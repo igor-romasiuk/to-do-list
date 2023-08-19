@@ -43,17 +43,6 @@ function addTask() {
         todoList.appendChild(listItem);
         bindDeleteButton(listItem);
         bindCompleteButton(listItem);
-        //listItem.innerHTML = `
-        //    <span class="task-text">${taskText}</span>
-        //    <div class="container-btn">
-        //        <button class="complete-btn"><img src="./icons/complete-btn.png" alt="Complete"></button>
-        //        <button class="delete-btn"><img src="./icons/delete-btn.png" alt="Delete"></button>
-        //    </div>
-        //`;
-        //taskList.appendChild(listItem);
-        //taskInput.value = '';
-        //bindDeleteButton(listItem);
-        //bindCompleteButton(listItem);
     }
 }
 
