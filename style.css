@@ -515,15 +515,3 @@ main {
 	text-decoration: line-through;
 	opacity: 0.5;
 }
-
-@media screen and (max-width: 768px) {
-	#content {
-		position: relative;
-		width: calc(100% - 60px);
-		transition: all .3s ease;
-	}
-	nav .nav-link,
-	nav .divider {
-		display: none;
-	}
-}
