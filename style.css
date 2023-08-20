@@ -174,7 +174,7 @@ li {
 	font-weight: 600;
 	margin-bottom: 12px;
 }
-#sidebar .btn-upgrade:hover {
+#sidebar .bx:hover {
 	background: var(--dark-blue);
 }
 #sidebar .ads .wrapper p {
