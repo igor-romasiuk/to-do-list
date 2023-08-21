@@ -51,10 +51,10 @@ li {
 	transition: all .3s ease;
 	z-index: 200;
 }
-#sidebar.hide {
+#sidebar .hide {
 	max-width: 60px;
 }
-#sidebar.hide:hover {
+#sidebar .hide:hover {
 	max-width: 260px;
 }
 #sidebar::-webkit-scrollbar {
@@ -362,8 +362,6 @@ nav .profile .profile-link a:hover {
 }
 /* NAVBAR */
 
-
-
 /* MAIN */
 main {
 	width: 100%;
@@ -482,10 +480,17 @@ main {
         0px 0.3px 0.9px grey,
         0px 1.6px 3.6px grey
     ;
+	transition: all 1s ease;
+}
+.new-task li {
+	flex: 1;
 }
 .container-btn {
 	display: flex;
 	align-items: center;
+}
+.todo-item {
+	overflow: hidden;
 }
 .delete-btn {
 	background-color: transparent;
@@ -498,17 +503,24 @@ main {
 .delete-btn img {
     width: 35px; 
     height: 35px;
+	pointer-events: none;
 }
 .complete-btn {
 	background-color: transparent;
     border: none;
     cursor: pointer;
 	height: 32px;
-	margin-left: auto;
+	margin-left: 5px;
 }
 .complete-btn img {
     width: 32px; 
     height: 31px;
+	pointer-events: none;
+}
+
+.fall {
+    transform: translateY(10rem) rotateZ(20deg);
+    opacity: 0;
 }
 
 .completed {
