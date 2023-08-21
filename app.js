@@ -15,7 +15,8 @@ taskInput.addEventListener('keypress', (event) => {
     }
 });
 todayDateElement.addEventListener('DOMContentLoaded', currentDate);
-filterOption.addEventListener("click", filterTodo);
+todoList.addEventListener('click', deleteTodo);
+filterOption.addEventListener('click', filterTodo);
 
 // Functions
 function addTask() {
@@ -27,6 +28,7 @@ function addTask() {
         //Create list
         const newTodo = document.createElement('li');
         newTodo.innerText = taskInput.value;
+        //saveLocalTodos(todoInput.value);
         newTodo.classList.add('todo-item')
         listItem.appendChild(newTodo);
         taskInput.value = "";
@@ -36,28 +38,32 @@ function addTask() {
         completedButton.classList.add('complete-btn')
         listItem.appendChild(completedButton);
         //Create trash button
-        const deleteButton = document.createElement('buuton');
+        const deleteButton = document.createElement('button');
         deleteButton.innerHTML = `<img src="./icons/delete-btn.png" alt="Delete">`;
         deleteButton.classList.add('delete-btn');
         listItem.appendChild(deleteButton);
         todoList.appendChild(listItem);
-        bindDeleteButton(listItem);
-        bindCompleteButton(listItem);
+        //bindDeleteButton(listItem);
+        //bindCompleteButton(listItem);
     }
 }
 
-function bindDeleteButton(listItem) {
-    const deleteButton = document.querySelector('.delete-btn');
-    deleteButton.addEventListener('click', () => {
-        listItem.remove();
-    });
-}
+function deleteTodo(e) {
+    const item = e.target;
+    
+    if (item.classList[0] === "delete-btn") {
+        const todo = item.parentElement;
+        todo.classList.add("fall");
+        //removeLocalTodos(todo);
 
-function bindCompleteButton(listItem) {
-    const completeButton = listItem.querySelector('.complete-btn');
-    completeButton.addEventListener('click', () => {
-        listItem.classList.toggle('completed');
-    });
+        todo.addEventListener("transitionend", event => {
+            todo.remove();
+          });
+    }
+    if (item.classList[0] === "complete-btn") {
+        const todo = item.parentElement;
+        todo.classList.toggle("completed");
+    }
 }
 
 function currentDate() {
@@ -77,4 +83,29 @@ function currentDate() {
         todayDate.getDate() + ' '
 
     todayDateElement.innerHTML = formattedDate;
+}
+
+function filterTodo(e) {
+    const todos = todoList.childNodes;
+
+    todos.forEach(function(todo) {
+        switch (e.target.value) {
+            case "all":
+                todo.style.display = "flex"
+                break;
+            case "completed":
+                if (todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                } else {
+                  todo.style.display = "none";
+                }
+                break;
+            case "uncompleted":
+                if (!todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+        }
+    });
 }
