@@ -25,6 +25,7 @@ html {
 }
 
 body {
+	min-height: 100vh;
 	background: var(--grey);
 	overflow-x: hidden;
 }
@@ -38,7 +39,7 @@ li {
 }
 
 /* SIDEBAR */
-#sidebar {
+.sidebar {
 	position: fixed;
 	max-width: 260px;
 	width: 100%;
@@ -48,54 +49,52 @@ li {
 	height: 100%;
 	overflow-y: auto;
 	scrollbar-width: none;
-	transition: all .3s ease;
 	z-index: 200;
+	transition: all 0.5s ease;
 }
 
-#sidebar:hover {
-	max-width: 260px;
-}
-
-#sidebar .icon {
-	min-width: 48px;
+.sidebar .icon {
+	min-width: 28px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-right: 6px;
+	margin-right: 12px;
 }
 
-#sidebar .side-menu {
+.sidebar .side-menu {
 	margin: 10px 0;
-	padding: 0 20px;
-	transition: all .3s ease;
+	padding: 0 16px;
 }
 
-#sidebar .side-menu a {
+.sidebar .side-menu a {
 	display: flex;
 	align-items: center;
 	font-size: 14px;
 	color: var(--dark);
 	padding: 12px 16px 12px 0;
-	transition: all .3s ease;
 	border-radius: 10px;
 	margin: 4px 0;
 	white-space: nowrap;
 }
-#sidebar .side-menu > li > a:hover {
+.sidebar .side-menu > li > a:hover {
 	background: var(--grey);
 }
 
-#sidebar .side-menu > li > a.active {
+.sidebar .side-menu > li > a.active {
 	background: var(--blue);
 	color: var(--light);
 }
 /* SIDEBAR */
 /* CONTENT */
-#content {
+.content {
 	position: relative;
-	max-width: calc(100% - 260px);
+	width: calc(100% - 260px);
 	left: 260px;
-	transition: all .3s ease;
+	transition: all 0.5s ease;
+}
+.close ~ .content {
+	left: 60px;
+	width: calc(100% - 60px);
 }
 /* NAVBAR */
 nav {
@@ -109,6 +108,21 @@ nav {
 	top: 0;
 	left: 0;
 	z-index: 100;
+}
+.close {
+	width: 60px;
+}
+.close .link-name {
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.5s ease;
+}
+.close .sidebar-addList {
+	display: none;
+}
+.close ~ .content {
+	left: 60px;
+	width: calc(100% - 60px);
 }
 nav .toggle-sidebar {
 	font-size: 18px;
@@ -129,7 +143,7 @@ nav .form-group input {
 	border: none;
 	outline: none;
 	padding: 10px 36px 10px 16px;
-	transition: all .3s ease;
+	transition: all 0.5s ease;
 }
 nav .form-group input:focus {
 	box-shadow: 0 0 0 1px var(--blue), 0 0 0 4px var(--light-blue);
@@ -205,7 +219,6 @@ nav .profile .profile-link a {
 	font-size: 14px;
 	color: var(--dark);
 	align-items: center;
-	transition: all .3s ease;
 }
 nav .profile .profile-link a:hover {
 	background: var(--grey);
@@ -262,9 +275,10 @@ nav .profile .profile-link a:hover {
 /* NAVBAR */
 
 /* MAIN */
-main {
+.main {
 	width: 100%;
 	padding: 24px 20px 20px 20px;
+	transition: all 0.5s ease;
 }
 
 .toolbar-top {
