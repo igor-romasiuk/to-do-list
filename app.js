@@ -6,6 +6,8 @@ const todayDateElement = document.querySelector('.today-date');
 const newTask = document.querySelector('.new-task');
 const filterOption = document.querySelector('.filter-todo');
 const todoList = document.querySelector('.todo-list');
+const toggleSidebar = document.querySelector('.toggle-sidebar');
+const sidebar = document.querySelector('.sidebar');
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', getTodos);
@@ -18,6 +20,7 @@ taskInput.addEventListener('keypress', (event) => {
 todayDateElement.addEventListener('DOMContentLoaded', currentDate);
 todoList.addEventListener('click', deleteTodo);
 filterOption.addEventListener('click', filterTodo);
+toggleSidebar.addEventListener('click', closeSidebar);
 
 // Functions
 function addTask() {
@@ -162,4 +165,8 @@ function getTodos() {
         listItem.appendChild(deleteButton);
         todoList.appendChild(listItem);
     });
-}    
+}
+
+function closeSidebar() {
+    sidebar.classList.toggle('close');
+}
