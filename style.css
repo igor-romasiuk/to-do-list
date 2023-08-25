@@ -162,22 +162,7 @@ nav .nav-link .icon {
 	font-size: 18px;
 	color: var(--dark);
 }
-nav .nav-link .badge {
-	position: absolute;
-	top: -12px;
-	right: -12px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	border: 2px solid var(--light);
-	background: var(--red);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: var(--light);
-	font-size: 10px;
-	font-weight: 700;
-}
+
 nav .divider {
 	width: 1px;
 	background: var(--grey);
@@ -220,14 +205,7 @@ nav .profile .profile-link a {
 	color: var(--dark);
 	align-items: center;
 }
-nav .profile .profile-link a:hover {
-	background: var(--grey);
-}
-.sidebar-line {
-    margin: 9px 0px;
-    height: 1px;
-    background-color: #edebe9;
-}
+
 .sidebar-addList {
     flex-shrink: 0;
     z-index: 1;
@@ -235,7 +213,6 @@ nav .profile .profile-link a:hover {
 }
 .add-list {
     padding: 12px 0 12px 16px;
-    color: #2564cf;
     font-size: 1.4rem;
     position: relative;
     flex: 1;
@@ -319,10 +296,10 @@ nav .profile .profile-link a:hover {
     color: #797775;
 }
 .subline {
-    padding: 0 25px;
+    padding: 0px 25px;
 }
 .today-date {
-    color: #797775;
+    color: #535251;
     font-size: 12px;
 }
 
