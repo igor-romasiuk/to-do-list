@@ -112,7 +112,7 @@ function filterTodo(e) {
     });
 }
 
-function saveLocalTodos(todo) {
+function saveLocalTodos(todo, completed = false) {
     let todos;
 
     if (localStorage.getItem("todos") === null) {
@@ -120,7 +120,7 @@ function saveLocalTodos(todo) {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
-    todos.push(todo);
+    todos.push({text: todo, completed: completed});
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 function removeLocalTodos(todo) {
@@ -143,14 +143,17 @@ function getTodos() {
       todos = JSON.parse(localStorage.getItem("todos"));
     }
 
-    todos.forEach(function(todo) {
+    todos.forEach(function(todoObj) {
         //Create todo div
         const listItem = document.createElement('div');
         listItem.classList.add('new-task')
         //Create list
         const newTodo = document.createElement('li');
-        newTodo.innerText = todo;
+        newTodo.innerText = todoObj.text;
         newTodo.classList.add('todo-item')
+        if (todoObj.completed) {
+            listItem.classList.add('completed');
+        }
         listItem.appendChild(newTodo);
         taskInput.value = "";
         //Create Completed Button
@@ -162,10 +165,12 @@ function getTodos() {
         const deleteButton = document.createElement('button');
         deleteButton.innerHTML = `<img src="./icons/delete-btn.png" alt="Delete">`;
         deleteButton.classList.add('delete-btn');
+        listItem.appendChild(completedButton);
         listItem.appendChild(deleteButton);
         todoList.appendChild(listItem);
     });
 }
+
 
 function closeSidebar() {
     sidebar.classList.toggle('close');
