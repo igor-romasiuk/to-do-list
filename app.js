@@ -171,7 +171,6 @@ function getTodos() {
     });
 }
 
-
 function closeSidebar() {
     sidebar.classList.toggle('close');
 }
