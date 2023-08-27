@@ -65,6 +65,9 @@ function deleteTodo(e) {
     if (item.classList[0] === "complete-btn") {
         const todo = item.parentElement;
         todo.classList.toggle("completed");
+
+        const todoText = todo.querySelector('.todo-item').innerText;
+        saveLocalTodos(todoText, todo.classList.contains('completed'));
     }
 }
 
@@ -112,7 +115,7 @@ function filterTodo(e) {
     });
 }
 
-function saveLocalTodos(todo, completed = false) {
+function saveLocalTodos(todoText, completed) {
     let todos;
 
     if (localStorage.getItem("todos") === null) {
@@ -120,9 +123,17 @@ function saveLocalTodos(todo, completed = false) {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
-    todos.push({text: todo, completed: completed});
+
+    const todoToUpdate = todos.find(todoObj => todoObj.text === todoText);
+    if (todoToUpdate) {
+        todoToUpdate.completed = completed;
+    } else {
+        todos.push({text: todoText, completed: completed});
+    }
+
     localStorage.setItem("todos", JSON.stringify(todos));
 }
+
 function removeLocalTodos(todo) {
     let todos;
     if (localStorage.getItem("todos") === null) {
@@ -130,8 +141,13 @@ function removeLocalTodos(todo) {
     } else {
       todos = JSON.parse(localStorage.getItem("todos"));
     }
-    const todoIndex = todo.children[0].innerText;
-    todos.splice(todos.indexOf(todoIndex), 1);
+    
+    console.log('todo', todo.children)
+    const todoText = todo.querySelector('.todo-item').innerText;
+
+    const index = todos.findIndex(todoObj => todoObj.text === todoText)
+
+    todos.splice(index, 1);
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
